@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% block content %}
+<!-- Este archivo define la vista individual para el disco ofertado en modalidad de subasta. -->
+<div class="container">
+    <div class="card lg:card-side bg-base-200 shadow-sm glass">
+        <figure class="max-w-110 max-h-110">
+            <img
+                src="https://cdn-images.dzcdn.net/images/cover/49fc8e95b072b484a6c9b3d4500d7709/1400x0-000000-100-0-0.jpg"
+                alt="Logo"
+            />
+        </figure>
+
+        <div class="card-body flex w-full flex-col">
+            <h2 class="card-title text-4xl">
+                Album Phil Collins But Seriously Semi nuevo
+            </h2>
+            <a class="link link-hover"
+                >Vendido por <strong>Cesar ruiz</strong></a
+            >
+            <h2 class="text-2xl my-5"><strong>MXN $300</strong></h2>
+            <h2>
+                Finaliza en
+                <span class="countdown font-mono text-2xl">
+                    <span style="--value: 10" aria-live="polite" aria-label="10"
+                        >10</span
+                    >
+                    h
+                    <span style="--value: 24" aria-live="polite" aria-label="24"
+                        >24</span
+                    >
+                    m
+                    <span style="--value: 59" aria-live="polite" aria-label="59"
+                        >59</span
+                    >
+                    s
+                </span>
+            </h2>
+            <button class="btn btn-error btn-block mt-25" type="button">
+                Ofertar
+            </button>
+            <button class="btn btn-soft btn-warning btn-block" type="button">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-star"
+                    viewBox="0 0 16 16"
+                >
+                    <path
+                        d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"
+                    />
+                </svg>
+                Agregar a la lista de favoritos
+            </button>
+        </div>
+    </div>
+    <p>Hola</p>
+</div>
+{% endblock %}
