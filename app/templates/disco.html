@@ -1,90 +1,95 @@
 {% extends "base.html" %} {% block title %} Led Zeppelin IV | Bazar Stereo {%
 endblock %} {% block content %}
-<div class="container mx-auto px-4 py-12">
+<div class="container mx-auto px-4 py-8 lg:py-12">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <!-- Imagen del producto -->
         <div class="space-y-6">
             <div
-                class="relative group aspect-square bg-base-300 rounded-[2rem] overflow-hidden shadow-2xl border border-base-300"
+                class="relative group aspect-square bg-base-200 rounded-[2rem] overflow-hidden shadow-xl border border-base-300 hover:shadow-2xl transition-shadow duration-500"
             >
                 <img
                     src="https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=800"
                     alt="Led Zeppelin IV Vinyl"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
             </div>
         </div>
 
+        <!-- Detalles del producto -->
         <div class="flex flex-col">
+            <!-- Título -->
             <div class="mb-2">
                 <h1
-                    class="text-5xl font-black uppercase tracking-tighter leading-none mt-2"
+                    class="text-4xl lg:text-5xl font-black uppercase tracking-tighter leading-none mt-2"
                 >
-                    Led Zeppelin <span class="text-primary">IV</span>
+                    disco seminuevo
                 </h1>
             </div>
 
-            <div class="space-y-1 mt-8 mb-5">
-                <div class="flex items-baseline gap-2">
-                    <span
-                        class="text-4xl font-black text-base-content tracking-tight mt-5 text-secondary"
-                        >$5,200.00</span
-                    >
-                    <span class="text-sm opacity-50 uppercase font-bold"
-                        >MXN</span
-                    >
-                </div>
+            <!-- Precio -->
+            <div class="flex items-baseline gap-2 mt-6 mb-4">
+                <span class="text-4xl font-bold text-secondary tracking-tight"
+                    >$5,200.00</span
+                >
+                <span class="text-sm opacity-50 uppercase font-bold">MXN</span>
             </div>
 
+            <!-- Cantidad y botones -->
             <div class="space-y-4">
                 <div class="flex items-center gap-4">
-                    <label class="font-bold text-sm uppercase">Cantidad:</label>
+                    <label
+                        class="font-bold text-sm uppercase text-base-content/70"
+                        >Cantidad:</label
+                    >
                     <select
                         class="select select-bordered select-sm w-20 rounded-lg"
                     >
                         <option>1</option>
                         <option disabled>2 (No hay stock)</option>
                     </select>
-                    <span class="text-xs opacity-50 font-bold uppercase"
+                    <span class="text-xs opacity-50 font-medium"
                         >1 disponible • 14 vendidos</span
                     >
                 </div>
 
                 <div class="grid grid-cols-1 gap-3">
                     <button
-                        class="btn btn-primary btn-lg rounded-full font-black uppercase tracking-widest text-lg shadow-xl"
+                        class="btn btn-primary btn-lg rounded-full font-black uppercase tracking-widest text-lg shadow-lg hover:shadow-primary/20 transition-shadow"
                     >
                         ¡Cómpralo ahora!
                     </button>
                     <button
-                        class="btn btn-outline btn-lg rounded-full font-bold border-2 hover:bg-base-300"
+                        class="btn btn-outline btn-lg rounded-full font-bold border-2 hover:bg-base-200 hover:border-base-300 transition-colors"
                     >
                         Agregar al carrito
                     </button>
                 </div>
             </div>
 
-            <div class="divider my-10"></div>
+            <!-- Separador -->
+            <div class="divider my-8"></div>
 
-            <div class="grid grid-cols-2 gap-y-4 text-sm">
+            <!-- Metadata (Formato / Género) -->
+            <div class="grid grid-cols-2 gap-4 text-sm">
                 <div>
                     <span
-                        class="block opacity-50 uppercase font-bold text-[10px]"
+                        class="block opacity-50 uppercase font-bold text-[10px] tracking-wider mb-1"
                         >Formato</span
                     >
-                    <span class="font-bold uppercase italic">Vinilo"</span>
+                    <span class="badge badge-ghost badge-lg font-bold uppercase"
+                        >Vinilo</span
+                    >
                 </div>
                 <div>
                     <span
-                        class="block opacity-50 uppercase font-bold text-[10px]"
+                        class="block opacity-50 uppercase font-bold text-[10px] tracking-wider mb-1"
                         >Género</span
                     >
-                    <span class="font-bold uppercase italic"
+                    <span class="badge badge-ghost badge-lg font-bold uppercase"
                         >Rock / Hard Rock</span
                     >
                 </div>
             </div>
-
-            <div class=""></div>
         </div>
     </div>
 </div>

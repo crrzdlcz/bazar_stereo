@@ -2,36 +2,39 @@
 %} {% block content %}
 <div class="flex flex-col items-center justify-center p-10 my-6">
     <div class="avatar mb-6">
-        <div class="w-48 rounded-full">
+        <div
+            class="w-32 sm:w-48 rounded-full ring-4 ring-primary ring-offset-base-100 ring-offset-4"
+        >
             <img
                 src="https://media.tenor.com/1W-HKNvj8UoAAAAM/cat.gif"
                 alt="Imagen de perfil"
+                class="w-full h-full object-cover"
             />
         </div>
     </div>
 
     <div class="text-center w-full max-w-xs">
         <h1 class="text-3xl font-bold text-base-content">César Ruíz</h1>
-        <p class="text-lg text-gray-500 mb-6">cr1275768@gmail.com</p>
+        <p class="text-lg text-gray-500 mt-2 mb-6">cr1275768@gmail.com</p>
 
         <button
-            class="btn btn-outline btn-block normal-case font-medium border-gray-300 hover:bg-gray-50 hover:text-black"
+            class="btn btn-outline btn-accent btn-block normal-case font-medium mb-3"
             onclick="editar_perfil.showModal()"
         >
-            Editar perfil
+            ✏️ Editar perfil
         </button>
         <button
-            class="btn btn-outline btn-block normal-case font-medium border-gray-300 hover:bg-gray-50 hover:text-black my-2"
+            class="btn btn-outline btn-secondary btn-block normal-case font-medium"
             onclick="mis_pedidos.showModal()"
         >
-            Mis pedidos
+            📦 Mis pedidos
         </button>
     </div>
 </div>
 
 <!-- Modal para editar el perfil del usuario -->
 <div class="text-center">
-    <dialog id="editar_perfil" class="modal bg-base-300 border-base-300">
+    <dialog id="editar_perfil" class="modal">
         <div class="modal-box">
             <h3 class="text-lg font-bold">Editar perfil</h3>
             <div class="overflow-x-auto py-4">
@@ -64,7 +67,7 @@
 
 <div class="text-center">
     <!-- Modal para los pedidos -->
-    <dialog id="mis_pedidos" class="modal bg-base-300 border-base-300">
+    <dialog id="mis_pedidos" class="modal">
         <div class="modal-box w-11/12 max-w-5xl">
             <h3 class="text-lg font-bold">Historial (30 dias)</h3>
             <div class="overflow-x-auto py-4">
@@ -87,7 +90,7 @@
                             </td>
                             <td>Compra</td>
                             <td>18/03/26</td>
-                            <td>$600</td>
+                            <td class="font-semibold">$600</td>
                         </tr>
                     </tbody>
                 </table>
