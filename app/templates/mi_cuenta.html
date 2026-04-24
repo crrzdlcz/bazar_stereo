@@ -1,108 +1,164 @@
 {% extends "base.html" %} {% block title %} Mi cuenta | Bazar Stereo {% endblock
 %} {% block content %}
-<div class="flex flex-col items-center justify-center p-10 my-6">
-    <div class="avatar mb-6">
-        <div
-            class="w-32 sm:w-48 rounded-full ring-4 ring-primary ring-offset-base-100 ring-offset-4"
-        >
-            <img
-                src="https://media.tenor.com/1W-HKNvj8UoAAAAM/cat.gif"
-                alt="Imagen de perfil"
-                class="w-full h-full object-cover"
-            />
+<div class="container mx-auto px-4 py-12 max-w-5xl">
+    <!-- Cabecera del perfil -->
+    <div class="flex flex-col md:flex-row items-center gap-8 mb-12">
+        <!-- Avatar con indicador de estado -->
+        <div class="avatar online">
+            <div
+                class="w-32 md:w-40 rounded-full ring-4 ring-primary ring-offset-base-100 ring-offset-4"
+            >
+                <img
+                    src="https://media.tenor.com/1W-HKNvj8UoAAAAM/cat.gif"
+                    alt="Imagen de perfil"
+                    class="w-full h-full object-cover"
+                />
+            </div>
+        </div>
+        <div class="text-center md:text-left flex-1">
+            <h1 class="text-4xl font-black text-base-content">César Ruíz</h1>
+            <p class="text-base text-base-content/60 mt-1">
+                cr1275768@gmail.com
+            </p>
+        </div>
+        <!-- Botón Modo Vendedor -->
+        <div class="flex items-center gap-3">
+            <label class="swap swap-rotate text-base-content/70">
+                <input type="checkbox" id="modo-vendedor" />
+                <span class="swap-off font-bold text-sm">🔹 Comprador</span>
+                <span class="swap-on font-bold text-sm text-warning"
+                    >💎 Vendedor</span
+                >
+            </label>
         </div>
     </div>
 
-    <div class="text-center w-full max-w-xs">
-        <h1 class="text-3xl font-bold text-base-content">César Ruíz</h1>
-        <p class="text-lg text-gray-500 mt-2 mb-6">cr1275768@gmail.com</p>
+    <!-- Estadísticas rápidas -->
+    <div class="grid grid-cols-2 md:grid-cols-2 gap-4 mb-12">
+        <div class="stat bg-base-200 rounded-box p-4 text-center shadow-sm">
+            <div class="stat-figure text-secondary text-2xl">🛒</div>
+            <div class="stat-title text-xs opacity-60">Compras</div>
+            <div class="stat-value text-2xl">14</div>
+        </div>
+        <div class="stat bg-base-200 rounded-box p-4 text-center shadow-sm">
+            <div class="stat-figure text-warning text-2xl">💎</div>
+            <div class="stat-title text-xs opacity-60">Ventas</div>
+            <div class="stat-value text-2xl">0</div>
+        </div>
+    </div>
 
+    <!-- Sección de acciones -->
+    <div class="flex flex-wrap gap-4 justify-center md:justify-start">
         <button
-            class="btn btn-outline btn-accent btn-block normal-case font-medium mb-3"
+            class="btn btn-outline btn-accent px-8 rounded-full font-medium gap-2"
             onclick="editar_perfil.showModal()"
         >
             ✏️ Editar perfil
         </button>
         <button
-            class="btn btn-outline btn-secondary btn-block normal-case font-medium"
+            class="btn btn-outline btn-secondary px-8 rounded-full font-medium gap-2"
             onclick="mis_pedidos.showModal()"
         >
             📦 Mis pedidos
         </button>
+        <!-- Este botón aparece dinámicamente cuando se activa el modo vendedor -->
+        <button
+            id="btn-gestionar"
+            class="btn btn-warning px-8 rounded-full font-medium gap-2 hidden"
+        >
+            ⚙️ Gestionar publicaciones
+        </button>
     </div>
 </div>
 
+<script>
+    // Alternar visibilidad del botón de gestión al activar modo vendedor
+    document
+        .getElementById("modo-vendedor")
+        .addEventListener("change", function () {
+            const btnGestionar = document.getElementById("btn-gestionar");
+            btnGestionar.classList.toggle("hidden", !this.checked);
+        });
+</script>
+
 <!-- Modal para editar el perfil del usuario -->
-<div class="text-center">
-    <dialog id="editar_perfil" class="modal">
-        <div class="modal-box">
-            <h3 class="text-lg font-bold">Editar perfil</h3>
-            <div class="overflow-x-auto py-4">
-                <label class="input mb-4">
-                    <span class="label">Nombre</span>
-                    <input type="text" placeholder="URL" />
-                </label>
-                <label class="input">
-                    <span class="label">Correo</span>
-                    <input type="text" placeholder="tu@correo.com" />
-                </label>
-                <textarea
-                    class="textarea mt-4"
-                    placeholder="Tu dirección (Se específico)"
-                ></textarea>
-            </div>
-            <div class="modal-action">
-                <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn btn-error">Cancelar</button>
-                </form>
-                <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn btn-primary">Guardar</button>
-                </form>
-            </div>
+<dialog id="editar_perfil" class="modal">
+    <div class="modal-box max-w-md">
+        <form method="dialog">
+            <button
+                class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            >
+                ✕
+            </button>
+        </form>
+        <h3 class="text-2xl font-bold mb-6">Editar perfil</h3>
+        <label class="form-control w-full mb-4">
+            <span class="label-text font-medium">Nombre</span>
+            <input
+                type="text"
+                value="César Ruíz"
+                class="input input-bordered w-full input-accent"
+            />
+        </label>
+        <label class="form-control w-full mb-4">
+            <span class="label-text font-medium">Correo electrónico</span>
+            <input
+                type="email"
+                value="cr1275768@gmail.com"
+                class="input input-bordered w-full input-accent"
+            />
+        </label>
+        <label class="form-control w-full mb-6">
+            <span class="label-text font-medium">Dirección de envío</span>
+            <textarea
+                class="textarea textarea-bordered w-full textarea-accent h-24"
+                placeholder="Tu dirección completa"
+            ></textarea>
+        </label>
+        <div class="modal-action">
+            <button class="btn btn-error btn-outline">Cancelar</button>
+            <button class="btn btn-primary">Guardar cambios</button>
         </div>
-    </dialog>
-</div>
+    </div>
+</dialog>
 
-<div class="text-center">
-    <!-- Modal para los pedidos -->
-    <dialog id="mis_pedidos" class="modal">
-        <div class="modal-box w-11/12 max-w-5xl">
-            <h3 class="text-lg font-bold">Historial (30 dias)</h3>
-            <div class="overflow-x-auto py-4">
-                <table class="table table-zebra">
-                    <!-- Tabla para mostrar los discos comprados los ultimos 30 dias -->
-                    <!-- head -->
-                    <thead>
-                        <tr>
-                            <th>Disco</th>
-                            <th>Tipo</th>
-                            <th>Fecha</th>
-                            <th>Precio</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- row 1 -->
-                        <tr>
-                            <td>
-                                Album Phil Collins ...But Seriously Semi nuevo
-                            </td>
-                            <td>Compra</td>
-                            <td>18/03/26</td>
-                            <td class="font-semibold">$600</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="modal-action">
-                <form method="dialog">
-                    <!-- if there is a button in form, it will close the modal -->
-                    <button class="btn btn-error">Cerrar</button>
-                </form>
-            </div>
+<!-- Modal para los pedidos -->
+<dialog id="mis_pedidos" class="modal">
+    <div class="modal-box max-w-4xl">
+        <form method="dialog">
+            <button
+                class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+            >
+                ✕
+            </button>
+        </form>
+        <h3 class="text-2xl font-bold mb-2">Historial de pedidos</h3>
+        <p class="text-sm text-base-content/60 mb-6">Últimos 30 días</p>
+        <div class="overflow-x-auto">
+            <table class="table table-zebra w-full">
+                <thead>
+                    <tr>
+                        <th>Disco</th>
+                        <th>Tipo</th>
+                        <th>Fecha</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-medium">
+                            Album Phil Collins ...But Seriously Semi nuevo
+                        </td>
+                        <td><span class="badge badge-ghost">Compra</span></td>
+                        <td>18/03/26</td>
+                        <td class="font-semibold">$600</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </dialog>
-</div>
-
+        <div class="modal-action mt-4">
+            <button class="btn btn-ghost">Cerrar</button>
+        </div>
+    </div>
+</dialog>
 {% endblock %}
