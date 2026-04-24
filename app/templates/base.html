@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es" data-theme="autumn">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{%block title%} Bazar Stereo {%endblock%}</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@5"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <link
+            rel="stylesheet"
+            href="{{url_for('static', filename='style/app.css')}}"
+        />
+    </head>
+    <body class="min-h-screen flex flex-col">
+        <!-- Navbar -->
+        <div class="navbar shadow-sm bg-base-200 px-4">
+            <div class="navbar-start">
+                <div class="dropdown">
+                    <div
+                        tabindex="0"
+                        role="button"
+                        class="btn btn-ghost lg:hidden"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h8m-8 6h16"
+                            />
+                        </svg>
+                    </div>
+                    <ul
+                        tabindex="0"
+                        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                    >
+                        <li>
+                            <a href="{{ url_for('main.discos') }}">Discos</a>
+                        </li>
+                        <li>
+                            <a href="{{ url_for('main.subastas') }}"
+                                >Subastas</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+                <a href="{{ url_for('main.inicio') }}" class="btn btn-link p-0">
+                    <img
+                        class="h-8 md:h-10 w-auto"
+                        src="{{url_for('static', filename='img/logo_bazar_stereo.svg')}}"
+                        alt="Bazar Stereo"
+                    />
+                </a>
+            </div>
+
+            <div class="navbar-center hidden lg:flex">
+                <ul class="menu menu-horizontal px-1 font-bold">
+                    <li><a href="{{ url_for('main.discos') }}">Discos</a></li>
+                    <li>
+                        <a href="{{ url_for('main.subastas') }}">Subastas</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="navbar-end gap-2">
+                <p class="text-sm hidden sm:block">
+                    ¡Hola <strong>Cesar</strong>!
+                </p>
+
+                <div class="dropdown dropdown-end">
+                    <div
+                        tabindex="0"
+                        role="button"
+                        class="btn btn-ghost btn-circle avatar"
+                    >
+                        <div class="w-10 rounded-full">
+                            <img
+                                src="https://media.tenor.com/1W-HKNvj8UoAAAAM/cat.gif"
+                            />
+                        </div>
+                    </div>
+                    <ul
+                        tabindex="0"
+                        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                    >
+                        <li>
+                            <a href="{{ url_for('main.mi_cuenta') }}"
+                                >Mi cuenta</a
+                            >
+                        </li>
+                        <li>
+                            <a class="text-error font-bold">Cerrar sesión</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <main class="grow">{% block content %}{% endblock %}</main>
+        <!-- Footer -->
+        <footer
+            class="footer sm:footer-horizontal footer-center bg-neutral text-neutral-content p-4"
+        >
+            <aside>
+                <p>
+                    Copyright ©2026 - Todos los derechos reservados por
+                    <strong>Bazar Stereo</strong>.
+                </p>
+            </aside>
+        </footer>
+    </body>
+</html>

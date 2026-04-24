@@ -1,0 +1,105 @@
+{% extends "base.html" %} {% block title %} Mi cuenta | Bazar Stereo {% endblock
+%} {% block content %}
+<div class="flex flex-col items-center justify-center p-10 my-6">
+    <div class="avatar mb-6">
+        <div class="w-48 rounded-full">
+            <img
+                src="https://media.tenor.com/1W-HKNvj8UoAAAAM/cat.gif"
+                alt="Imagen de perfil"
+            />
+        </div>
+    </div>
+
+    <div class="text-center w-full max-w-xs">
+        <h1 class="text-3xl font-bold text-base-content">César Ruíz</h1>
+        <p class="text-lg text-gray-500 mb-6">cr1275768@gmail.com</p>
+
+        <button
+            class="btn btn-outline btn-block normal-case font-medium border-gray-300 hover:bg-gray-50 hover:text-black"
+            onclick="editar_perfil.showModal()"
+        >
+            Editar perfil
+        </button>
+        <button
+            class="btn btn-outline btn-block normal-case font-medium border-gray-300 hover:bg-gray-50 hover:text-black my-2"
+            onclick="mis_pedidos.showModal()"
+        >
+            Mis pedidos
+        </button>
+    </div>
+</div>
+
+<!-- Modal para editar el perfil del usuario -->
+<div class="text-center">
+    <dialog id="editar_perfil" class="modal bg-base-300 border-base-300">
+        <div class="modal-box">
+            <h3 class="text-lg font-bold">Editar perfil</h3>
+            <div class="overflow-x-auto py-4">
+                <label class="input mb-4">
+                    <span class="label">Nombre</span>
+                    <input type="text" placeholder="URL" />
+                </label>
+                <label class="input">
+                    <span class="label">Correo</span>
+                    <input type="text" placeholder="tu@correo.com" />
+                </label>
+                <textarea
+                    class="textarea mt-4"
+                    placeholder="Tu dirección (Se específico)"
+                ></textarea>
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn btn-error">Cancelar</button>
+                </form>
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn btn-primary">Guardar</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+<div class="text-center">
+    <!-- Modal para los pedidos -->
+    <dialog id="mis_pedidos" class="modal bg-base-300 border-base-300">
+        <div class="modal-box w-11/12 max-w-5xl">
+            <h3 class="text-lg font-bold">Historial (30 dias)</h3>
+            <div class="overflow-x-auto py-4">
+                <table class="table table-zebra">
+                    <!-- Tabla para mostrar los discos comprados los ultimos 30 dias -->
+                    <!-- head -->
+                    <thead>
+                        <tr>
+                            <th>Disco</th>
+                            <th>Tipo</th>
+                            <th>Fecha</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- row 1 -->
+                        <tr>
+                            <td>
+                                Album Phil Collins ...But Seriously Semi nuevo
+                            </td>
+                            <td>Compra</td>
+                            <td>18/03/26</td>
+                            <td>$600</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-action">
+                <form method="dialog">
+                    <!-- if there is a button in form, it will close the modal -->
+                    <button class="btn btn-error">Cerrar</button>
+                </form>
+            </div>
+        </div>
+    </dialog>
+</div>
+
+{% endblock %}

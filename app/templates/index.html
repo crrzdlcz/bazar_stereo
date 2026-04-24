@@ -1,0 +1,119 @@
+{% extends "base.html" %} {% block title %} Inicio | Bazar Stereo {% endblock %}
+{% block content %}
+
+<section>
+    <div class="hero min-h-screen">
+        <div class="hero-content flex-col lg:flex-row-reverse">
+            <img
+                src="static/img/logo_bazar_stereo.svg"
+                class="max-w-sm ml-30"
+            />
+            <div>
+                <h1 class="mb-5 text-7xl font-black uppercase">
+                    Bazar <span class="text-primary">Stereo</span>
+                </h1>
+                <p class="mb-8 text-xl font-light py-6">
+                    La plataforma definitiva para el coleccionismo de música en
+                    formato físico.
+                </p>
+                <a
+                    href="{{ url_for('main.subastas') }}"
+                    class="btn btn-accent btn-lg px-12 rounded-full mr-3"
+                    >Catálogo Completo</a
+                >
+                <a
+                    href="{{ url_for('main.subastas') }}"
+                    class="btn btn-primary btn-lg px-12 rounded-full"
+                    >Subastas Activas</a
+                >
+            </div>
+        </div>
+    </div>
+</section>
+
+<section
+    id="reveal-section"
+    class="mb-10 mt-5 opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+>
+    <div class="hero bg-secondary rounded-box overflow-hidden shadow-2xl">
+        <div
+            class="hero-content flex-col lg:flex-row p-8 lg:py-24 lg:px-16 gap-12"
+        >
+            <div class="text-center lg:text-left text-info-content max-w-md">
+                <h1
+                    class="text-5xl font-black uppercase tracking-tighter leading-none mb-4 text-white"
+                >
+                    Únete a la
+                    <span class="opacity-80 text-white">Comunidad</span>
+                </h1>
+                <p class="text-lg font-medium opacity-90 mb-6 text-white">
+                    Haz crecer tu biblioteca musical o convierte tus tesoros en
+                    efectivo. <strong>Regístrate</strong> para comprar y vender
+                    tu colección.
+                </p>
+            </div>
+
+            <div
+                class="card bg-base-100 w-full max-w-sm shrink-0 shadow-xl border border-white/20"
+            >
+                <div class="card-body p-8 text-center">
+                    <h2 class="text-2xl font-bold mb-2">
+                        ¿Listo para coleccionar?
+                    </h2>
+                    <p class="text-sm opacity-60 mb-6">
+                        Crea tu cuenta en menos de un minuto.
+                    </p>
+
+                    <div class="form-control gap-3">
+                        <button
+                            class="btn btn-primary btn-block rounded-full font-bold"
+                        >
+                            Crear Cuenta Nueva
+                        </button>
+                        <div class="divider text-xs opacity-40">
+                            O SI YA TIENES CUENTA
+                        </div>
+                        <button
+                            class="btn btn-outline btn-warning btn-block rounded-full"
+                        >
+                            Iniciar Sesión
+                        </button>
+                    </div>
+
+                    <p
+                        class="text-[10px] mt-6 opacity-50 uppercase tracking-widest font-bold"
+                    >
+                        Bazar Stereo © 2026
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove(
+                            "opacity-0",
+                            "translate-y-10",
+                        );
+                        entry.target.classList.add(
+                            "opacity-100",
+                            "translate-y-0",
+                        );
+                    }
+                });
+            },
+            { threshold: 0.2 },
+        );
+
+        const section = document.querySelector("#reveal-section");
+        if (section) observer.observe(section);
+    });
+</script>
+
+{% endblock %}
