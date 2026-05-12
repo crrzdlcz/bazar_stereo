@@ -1,0 +1,133 @@
+{% extends "base.html" %} {% block title %}Bazar Stereo | Tu Carrito{% endblock
+%} {% block content %}
+
+<div class="container mx-auto px-4 py-8 lg:py-12 max-w-5xl">
+    <h1 class="text-3xl lg:text-5xl font-black uppercase tracking-tight mb-10">
+        Tu <span class="text-primary">Carrito</span>
+    </h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Lista de items -->
+        <div class="lg:col-span-2 space-y-5">
+            <div
+                class="card card-side bg-base-100 shadow-lg border border-base-200/60 hover:shadow-xl transition-all duration-300"
+            >
+                <figure class="w-32 h-32 sm:w-40 sm:h-40 flex-shrink-0">
+                    <img
+                        src="ruta/a/tu/imagen.jpg"
+                        alt="Imagen del disco"
+                        class="object-cover w-full h-full"
+                    />
+                </figure>
+                <div class="card-body p-4 sm:p-6">
+                    <h2 class="card-title text-lg font-bold">
+                        Nombre del Disco
+                    </h2>
+                    <p
+                        class="text-sm text-base-content/50 uppercase font-bold tracking-wide"
+                    >
+                        Formato (Vinyl/CD)
+                    </p>
+
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-xl font-bold text-secondary"
+                            >$0.00</span
+                        >
+
+                        <!-- Cantidad -->
+                        <form
+                            method="POST"
+                            action="#"
+                            class="flex items-center gap-2"
+                        >
+                            <select
+                                name="cantidad"
+                                class="select select-bordered select-sm rounded-full w-16 text-center font-bold"
+                            >
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <button
+                                type="submit"
+                                class="btn btn-ghost btn-xs btn-circle"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-4 w-4"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Botón eliminar -->
+                    <div class="card-actions justify-end mt-2">
+                        <a href="#" class="btn btn-ghost btn-sm text-error">
+                            Eliminar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Resumen del pedido -->
+        <div class="lg:col-span-1">
+            <div
+                class="card bg-base-100 shadow-xl border border-base-200/60 sticky top-24"
+            >
+                <div class="card-body p-6">
+                    <h3 class="card-title text-lg font-bold mb-4">
+                        Resumen del pedido
+                    </h3>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between">
+                            <span class="text-base-content/60">Subtotal</span>
+                            <span class="font-bold">$0.00</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-base-content/60">Envío</span>
+                            <span class="font-bold text-success">Gratis</span>
+                        </div>
+                        <div class="divider my-1"></div>
+                        <div class="flex justify-between text-lg font-black">
+                            <span>Total</span>
+                            <span class="text-secondary">$0.00</span>
+                        </div>
+                    </div>
+
+                    <a
+                        href="#"
+                        class="btn btn-primary btn-block btn-lg rounded-full mt-6 shadow-lg hover:shadow-primary/20"
+                    >
+                        Proceder al pago
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vista de Carrito Vacío (Opcional) -->
+    <div class="text-center py-16">
+        <div class="text-6xl mb-6 opacity-20">🎵</div>
+        <h2 class="text-2xl font-bold mb-2">Tu carrito está vacío</h2>
+        <p class="text-base-content/50 mb-6">
+            Agrega discos para que la música no pare.
+        </p>
+        <a
+            href="{{ url_for('main.discos') }}"
+            class="btn btn-accent btn-lg rounded-full px-10"
+        >
+            Explorar catálogo
+        </a>
+    </div>
+</div>
+{% endblock %}

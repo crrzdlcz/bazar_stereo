@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %} Discos | Bazar Stereo {% endblock %}
+{% extends "base.html" %} {% block title %}Bazar Stereo | Discos {% endblock %}
 {% block content %}
 <!-- Este archivo es la vista de todos los discos (No subastas; pero si ofertas) -->
 <div class="container mx-auto p-4 flex flex-col md:flex-row gap-10">
@@ -126,7 +126,7 @@
         {% for elementos in range(12) %}
         <a href="#" class="group">
             <div
-                class="card bg-base-200/70 backdrop-blur-md border border-base-content/10 w-full shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-95 cursor-pointer"
+                class="card bg-base-200/70 border border-base-content/10 w-full shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-95 cursor-pointer"
             >
                 <figure class="h-48 overflow-hidden">
                     <img

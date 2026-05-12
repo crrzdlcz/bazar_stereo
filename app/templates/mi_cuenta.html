@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %} Mi cuenta | Bazar Stereo {% endblock
+{% extends "base.html" %} {% block title %}Bazar Stereo | Mi cuenta {% endblock
 %} {% block content %}
 <div class="container mx-auto px-4 py-12 max-w-5xl">
     <!-- Cabecera del perfil -->
@@ -62,12 +62,20 @@
             📦 Mis pedidos
         </button>
         <!-- Este botón aparece dinámicamente cuando se activa el modo vendedor -->
-        <button
+        <!--<button
             id="btn-gestionar"
             class="btn btn-warning px-8 rounded-full font-medium gap-2 hidden"
+            onclick=""
+
         >
             ⚙️ Gestionar publicaciones
-        </button>
+        </button>-->
+        <a
+            href="{{ url_for('main.vendedor') }}"
+            id="btn-gestionar"
+            class="btn btn-warning px-8 rounded-full font-medium gap-2 hidden"
+            >⚙️ Gestionar publicaciones</a
+        >
     </div>
 </div>
 
@@ -100,14 +108,7 @@
                 class="input input-bordered w-full input-accent"
             />
         </label>
-        <label class="form-control w-full mb-4">
-            <span class="label-text font-medium">Correo electrónico</span>
-            <input
-                type="email"
-                value="cr1275768@gmail.com"
-                class="input input-bordered w-full input-accent"
-            />
-        </label>
+
         <label class="form-control w-full mb-6">
             <span class="label-text font-medium">Dirección de envío</span>
             <textarea

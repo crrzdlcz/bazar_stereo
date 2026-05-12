@@ -1,31 +1,35 @@
-{% extends "base.html" %} {% block title %} Inicio | Bazar Stereo {% endblock %}
+{% extends "base.html" %} {% block title %}Bazar Stereo | Inicio {% endblock %}
 {% block content %}
 
 <section>
-    <div class="hero min-h-screen px-4 sm:px-6 lg:px-8">
-        <div class="hero-content flex-col lg:flex-row-reverse gap-8 lg:gap-12">
+    <div class="hero py-16 px-4 sm:px-6 lg:px-8">
+        <div class="hero-content flex-col lg:flex-row-reverse gap-6 lg:gap-8">
             <img
                 src="static/img/logo_bazar_stereo.svg"
                 class="max-w-sm mx-auto"
             />
             <div>
-                <h1 class="mb-5 text-5xl sm:text-7xl font-black uppercase">
+                <h1 class="mb-3 text-4xl sm:text-5xl font-black uppercase">
                     Bazar <span class="text-primary">Stereo</span>
                 </h1>
-                <p class="mb-8 text-xl font-light py-4">
+                <p class="mb-6 text-lg font-light py-2">
                     La plataforma definitiva para el coleccionismo de música en
                     formato físico.
                 </p>
-                <a
-                    href="{{ url_for('main.subastas') }}"
-                    class="btn btn-accent btn-lg px-12 rounded-full mr-3 mb-3 sm:mb-0"
-                    >Catálogo Completo</a
-                >
-                <a
-                    href="{{ url_for('main.subastas') }}"
-                    class="btn btn-primary btn-lg px-12 rounded-full mt-3 sm:mt-0"
-                    >Subastas Activas</a
-                >
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a
+                        href="{{ url_for('main.discos') }}"
+                        class="btn btn-accent btn-md lg:btn-lg px-6 lg:px-12 rounded-full"
+                    >
+                        Catálogo Completo
+                    </a>
+                    <a
+                        href="{{ url_for('main.subastas') }}"
+                        class="btn btn-primary btn-md lg:btn-lg px-6 lg:px-12 rounded-full"
+                    >
+                        Subastas Activas
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -118,7 +122,7 @@
                     }
                 });
             },
-            { threshold: 0.11 },
+            { threshold: 0.2 },
         );
 
         const section = document.querySelector("#reveal-section");
@@ -126,17 +130,24 @@
     });
 </script>
 
-<!--Modal para el login-->
-<!-- Checkbox oculto para controlar el modal -->
-<input type="checkbox" id="login-modal" class="modal-toggle" />
+<input
+    type="radio"
+    name="modal-toggle"
+    id="modal-close"
+    class="modal-toggle"
+    checked
+/>
 
-<!-- Modal -->
+<!-- Modal para el login -->
+<input type="radio" name="modal-toggle" id="login-modal" class="modal-toggle" />
+
 <div class="modal">
-    <div class="modal-box max-w-md p-6 relative">
-        <!-- Botón de cierre (sin contenedor modal-action) -->
+    <div
+        class="modal-box max-w-md p-0 relative bg-base-100 shadow-2xl border border-base-300/50 overflow-hidden"
+    >
         <label
-            for="login-modal"
-            class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3"
+            for="modal-close"
+            class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3 z-10"
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -152,61 +163,68 @@
             </svg>
         </label>
 
-        <!-- Título -->
-        <h3 class="text-2xl sm:text-3xl text-center font-bold mb-10 mt-6">
-            ¡Bienvenido de vuelta!
-        </h3>
+        <div class="p-8 pt-12">
+            <h3
+                class="text-2xl sm:text-3xl text-center font-bold mb-8 text-secondary"
+            >
+                ¡Bienvenido de vuelta!
+            </h3>
 
-        <!-- Campo Email -->
-        <div class="form-control w-full">
-            <label class="label">
-                <span class="label-text">Email</span>
-            </label>
-            <input
-                type="email"
-                placeholder="correo@ejemplo.com"
-                class="input input-bordered w-full input-accent"
-            />
-        </div>
+            <div class="form-control w-full mb-5">
+                <label class="label">
+                    <span class="label-text font-medium">Email</span>
+                </label>
+                <input
+                    type="email"
+                    placeholder="correo@ejemplo.com"
+                    class="input input-bordered w-full focus:input-secondary transition-colors"
+                />
+            </div>
 
-        <!-- Campo Contraseña -->
-        <div class="form-control w-full mt-4">
-            <label class="label">
-                <span class="label-text">Contraseña</span>
-            </label>
-            <input
-                type="password"
-                placeholder="••••••••"
-                class="input input-bordered w-full input-accent"
-            />
+            <div class="form-control w-full mb-6">
+                <label class="label">
+                    <span class="label-text font-medium">Contraseña</span>
+                </label>
+                <input
+                    type="password"
+                    placeholder="••••••••"
+                    class="input input-bordered w-full focus:input-secondary transition-colors"
+                />
+            </div>
 
-            <!-- Botón Iniciar Sesión -->
-            <button class="btn btn-secondary w-full mt-6">
+            <button
+                class="btn btn-secondary w-full mb-4 shadow-md hover:shadow-lg"
+            >
                 Iniciar Sesión
             </button>
 
-            <!-- Enlace para registrarse -->
-            <p class="text-center text-sm mt-6">
+            <p class="text-center text-sm mt-4">
                 ¿No tienes cuenta?
-                <a href="#" class="link link-accent font-semibold"
-                    >Regístrate</a
+                <label
+                    for="signup-modal"
+                    class="link link-accent font-semibold cursor-pointer"
+                    >Regístrate</label
                 >
             </p>
         </div>
     </div>
 </div>
 
-<!--Modal para el registro-->
-<!-- Checkbox oculto para controlar el modal -->
-<input type="checkbox" id="signup-modal" class="modal-toggle" />
+<!-- Modal para el registro -->
+<input
+    type="radio"
+    name="modal-toggle"
+    id="signup-modal"
+    class="modal-toggle"
+/>
 
-<!-- Modal -->
 <div class="modal">
-    <div class="modal-box max-w-md p-6 relative">
-        <!-- Botón de cierre (sin contenedor modal-action) -->
+    <div
+        class="modal-box max-w-md p-0 relative bg-base-100 shadow-2xl border border-base-300/50 overflow-hidden"
+    >
         <label
-            for="signup-modal"
-            class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3"
+            for="modal-close"
+            class="btn btn-sm btn-circle btn-ghost absolute right-3 top-3 z-10"
         >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -222,64 +240,60 @@
             </svg>
         </label>
 
-        <!-- Título -->
-        <h3 class="text-2xl sm:text-3xl text-center font-bold mb-10 mt-6">
-            ¡Hola!
-        </h3>
+        <div class="p-8 pt-12">
+            <h3
+                class="text-2xl sm:text-3xl text-center font-bold mb-8 text-primary"
+            >
+                ¡Hola!
+            </h3>
 
-        <!--Campo nombre-->
-        <div class="form-control w-full">
-            <label class="label">
-                <span class="label-text">Nombre de usario</span>
-            </label>
-            <input
-                type="text"
-                placeholder="César Ruíz"
-                class="input input-bordered w-full input-accent"
-            />
-        </div>
+            <div class="form-control w-full mb-5">
+                <label class="label">
+                    <span class="label-text font-medium"
+                        >Nombre de usuario</span
+                    >
+                </label>
+                <input
+                    type="text"
+                    placeholder="Tu nombre"
+                    class="input input-bordered w-full focus:input-primary transition-colors"
+                />
+            </div>
 
-        <!-- Campo Email -->
-        <div class="form-control w-full mt-4">
-            <label class="label">
-                <span class="label-text">Email</span>
-            </label>
-            <input
-                type="email"
-                placeholder="correo@ejemplo.com"
-                class="input input-bordered w-full input-accent"
-            />
-        </div>
+            <div class="form-control w-full mb-5">
+                <label class="label">
+                    <span class="label-text font-medium">Email</span>
+                </label>
+                <input
+                    type="email"
+                    placeholder="correo@ejemplo.com"
+                    class="input input-bordered w-full focus:input-primary transition-colors"
+                />
+            </div>
 
-        <!-- Campo Contraseña -->
-        <div class="form-control w-full mt-4">
-            <label class="label">
-                <span class="label-text">Contraseña</span>
-            </label>
-            <input
-                type="password"
-                placeholder="••••••••"
-                class="input input-bordered w-full input-accent"
-            />
+            <div class="form-control w-full mb-6">
+                <label class="label">
+                    <span class="label-text font-medium">Contraseña</span>
+                </label>
+                <input
+                    type="password"
+                    placeholder="••••••••"
+                    class="input input-bordered w-full focus:input-primary transition-colors"
+                />
+            </div>
 
-            <!-- Checkbox Recordarme -->
-            <!--<div class="form-control mt-5">
-      <label class="label cursor-pointer justify-start gap-2">
-        <input type="checkbox" checked="checked" class="checkbox checkbox-secondary checkbox-sm" />
-        <span class="label-text">Recordarme</span>
-      </label>
-    </div>-->
-
-            <!-- Botón Iniciar Sesión -->
-            <button class="btn btn-primary w-full mt-6">
+            <button
+                class="btn btn-primary w-full mb-4 shadow-md hover:shadow-lg"
+            >
                 ¡Créame una cuenta!
             </button>
 
-            <!-- Enlace para registrarse -->
-            <p class="text-center text-sm mt-6">
+            <p class="text-center text-sm mt-4">
                 ¿Ya tienes cuenta?
-                <a href="#" class="link link-accent font-semibold"
-                    >Inicia sesión</a
+                <label
+                    for="login-modal"
+                    class="link link-accent font-semibold cursor-pointer"
+                    >Inicia sesión</label
                 >
             </p>
         </div>

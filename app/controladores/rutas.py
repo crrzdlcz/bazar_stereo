@@ -27,3 +27,14 @@ def mi_cuenta():
 @main_bp.route("/disco")
 def disco():
     return render_template("disco.html")
+
+
+@main_bp.route("/carrito")
+def carrito():
+    return render_template("carrito.html")
+
+
+# Para el vendedor
+@main_bp.route("/extra/vendedor")
+def vendedor():
+    return render_template("vendedor.html")
