@@ -1,78 +1,62 @@
 {% extends "base.html" %} {% block title %}Bazar Stereo | Disco {% endblock %}
 {% block content %}
-<div class="container mx-auto px-4 py-8 lg:py-12 max-w-7xl">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+<div class="container mx-auto px-4 py-8 lg:py-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         <!-- Imagen del producto -->
         <div class="space-y-6">
             <div
-                class="relative group aspect-square bg-base-200 rounded-[2.5rem] overflow-hidden shadow-2xl border border-base-300/60 hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-1"
+                class="relative group aspect-square bg-base-200 rounded-[2rem] overflow-hidden shadow-xl border border-base-300 hover:shadow-2xl transition-shadow duration-500"
             >
                 <img
-                    src="https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=800"
-                    alt="Led Zeppelin IV Vinyl"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    src="{{ detalle_disco.imagen }}"
+                    alt="{{ detalle_disco.titulo }}"
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <!-- gradiente decorativo sutil en borde inferior -->
-                <div
-                    class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"
-                ></div>
             </div>
         </div>
 
         <!-- Detalles del producto -->
-        <div
-            class="flex flex-col bg-base-100 rounded-[2.5rem] p-8 lg:p-10 shadow-xl border border-base-200/60 backdrop-blur-sm"
-        >
+        <div class="flex flex-col">
             <!-- Título -->
             <div class="mb-6">
                 <h1
-                    class="text-4xl lg:text-5xl font-black uppercase tracking-tighter leading-[1.1] text-base-content"
+                    class="text-4xl lg:text-5xl font-black uppercase tracking-tighter leading-none"
                 >
-                    Led Zeppelin IV
+                    {{ detalle_disco.titulo }}
                 </h1>
+                <h3
+                    class="text-xl font-medium text-secondary mt-1 tracking-tight"
+                >
+                    {{ detalle_disco.artista }}
+                </h3>
+                <div class="divider my-2"></div>
+                <!-- Una línea divisoria sutil de DaisyUI -->
+                <p
+                    class="text-base text-base-content/80 leading-relaxed text-justify"
+                >
+                    {{ detalle_disco.descripcion }}
+                </p>
             </div>
 
             <!-- Precio -->
-            <div class="flex items-baseline gap-3 mt-4 mb-6">
-                <span
-                    class="text-5xl lg:text-6xl font-black text-secondary tracking-tight"
-                    >$5,200.00</span
+            <div class="flex items-baseline gap-2 mt-6 mb-4">
+                <span class="text-4xl font-bold text-secondary tracking-tight"
+                    >${{ detalle_disco.precio }}</span
                 >
-                <span
-                    class="text-sm font-bold text-base-content/40 uppercase tracking-widest"
-                    >MXN</span
-                >
+                <span class="text-sm opacity-50 uppercase font-bold">MXN</span>
             </div>
 
-            <!-- Cantidad y botones -->
-            <div class="space-y-5">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-3">
-                        <label
-                            class="font-bold text-sm uppercase text-base-content/60 tracking-wider"
-                            >Cantidad</label
-                        >
-                        <select
-                            class="select select-bordered rounded-full w-20 text-center font-bold focus:outline-none focus:border-primary transition-colors"
-                        >
-                            <option>1</option>
-                            <option disabled>2 (Agotado)</option>
-                        </select>
-                    </div>
-                    <div class="text-xs text-base-content/40 font-medium">
-                        <span class="text-success font-bold">1 disponible</span>
-                        · 14 vendidos
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 gap-4">
+            <!-- Botones -->
+            <div class="space-y-4">
+                <div class="grid grid-cols-1 gap-3">
                     <button
-                        class="btn btn-primary btn-lg rounded-full font-black uppercase tracking-widest text-lg shadow-lg hover:shadow-primary/30 transition-all hover:scale-[1.02] active:scale-95"
+                        class="btn btn-primary btn-lg rounded-full font-black uppercase tracking-widest text-lg shadow-lg hover:shadow-primary/20 transition-shadow"
                     >
                         ¡Cómpralo ahora!
                     </button>
                     <button
-                        class="btn btn-outline btn-lg rounded-full font-bold uppercase tracking-wide border-2 border-base-300 hover:border-primary hover:bg-primary/5 hover:text-primary transition-all"
+                        class="btn btn-outline btn-lg rounded-full font-bold border-2 hover:bg-base-200 hover:border-base-300 transition-colors"
                     >
                         Agregar al carrito
                     </button>
@@ -80,50 +64,32 @@
             </div>
 
             <!-- Separador -->
-            <div
-                class="divider my-8 after:bg-base-300 before:bg-base-300"
-            ></div>
-
+            <div class="divider my-8"></div>
             <!-- Metadata (Formato / Género) -->
-            <div class="grid grid-cols-2 gap-6 text-sm">
+            <div class="grid grid-cols-2 gap-4 text-sm">
                 <div>
                     <span
-                        class="block text-[10px] font-bold uppercase tracking-[.2em] text-base-content/40 mb-2"
+                        class="block opacity-50 uppercase font-bold text-[10px] tracking-wider mb-1"
                         >Formato</span
                     >
                     <span
-                        class="badge badge-outline badge-lg font-bold uppercase border-2 px-4 py-3"
+                        class="badge badge-ghost badge-lg font-bold uppercase"
                     >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-4 w-4 mr-1"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 19V6l12-3v13M9 19c0 1.1-.9 2-2 2s-2-.9-2-2 2-2 2-2zm12-3c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zM9 10l12-3"
-                            />
-                        </svg>
-                        Vinilo
-                    </span>
+                        {{ detalle_disco.formato_nombre }}</span
+                    >
                 </div>
                 <div>
                     <span
-                        class="block text-[10px] font-bold uppercase tracking-[.2em] text-base-content/40 mb-2"
+                        class="block opacity-50 uppercase font-bold text-[10px] tracking-wider mb-1"
                         >Género</span
                     >
-                    <span
-                        class="badge badge-outline badge-lg font-bold uppercase border-2 px-4 py-3"
+                    <span class="badge badge-ghost badge-lg font-bold uppercase"
+                        >{{ detalle_disco.nombre_genero }}</span
                     >
-                        Rock / Hard Rock
-                    </span>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 {% endblock %}

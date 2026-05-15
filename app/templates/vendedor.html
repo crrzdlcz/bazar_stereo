@@ -1,1 +1,528 @@
-{% extends "base.html" %} {% block content %} {% endblock %}
+{% extends "base.html" %} {% block content %}
+
+<div
+    class="container mx-auto p-4 flex flex-col md:flex-row gap-10 justify-center"
+>
+    <!-- Estadisticas -->
+    <section class="stats stats-vertical lg:stats-horizontal shadow">
+        <div class="stat px-25">
+            <div class="stat-title">Ventas</div>
+            <div class="stat-value">31K</div>
+        </div>
+
+        <div class="stat px-25">
+            <div class="stat-title">Subastas</div>
+            <div class="stat-value">4,200</div>
+        </div>
+
+        <div class="stat px-25">
+            <!-- El valor aria current es el que determina en donde va la strella-->
+            <div class="stat-title">Calificación</div>
+            <div class="rating">
+                <div
+                    class="mask mask-star-2 bg-orange-400"
+                    aria-label="1 star"
+                ></div>
+                <div
+                    class="mask mask-star-2 bg-orange-400"
+                    aria-label="2 star"
+                ></div>
+                <div
+                    class="mask mask-star-2 bg-orange-400"
+                    aria-label="3 star"
+                    aria-current="true"
+                ></div>
+                <div
+                    class="mask mask-star-2 bg-orange-400"
+                    aria-label="4 star"
+                ></div>
+                <div
+                    class="mask mask-star-2 bg-orange-400"
+                    aria-label="5 star"
+                ></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- En este section va un query para obtener todos las publicaciones del usuario. -->
+    <section></section>
+</div>
+
+<!-- Boton "Fab" para agregar un disco / subasta -->
+<div class="fixed bottom-25 right-6 z-[100]">
+    <div class="dropdown dropdown-top dropdown-end">
+        <div
+            tabindex="0"
+            role="button"
+            class="btn btn-lg btn-circle btn-secondary shadow-xl border-none items-center justify-center w-14 h-14"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+            >
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path
+                    fill="currentColor"
+                    d="M11 13H5v-2h6V5h2v6h6v2h-6v6h-2z"
+                />
+            </svg>
+        </div>
+        <ul
+            tabindex="0"
+            class="dropdown-content z-[1] flex flex-col gap-4 mb-4 items-center"
+        >
+            <li>
+                <div
+                    class="tooltip tooltip-left tooltip-accent"
+                    data-tip="Vender Disco"
+                >
+                    <button
+                        onclick="vender_disco.showModal()"
+                        class="btn btn-lg btn-circle shadow-lg bg-base-100 border-base-300 hover:btn-primary flex items-center justify-center"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 24 24"
+                        >
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <g
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M17.5 5a1.5 1.5 0 1 1 0 3a1.5 1.5 0 0 1 0-3"
+                                />
+                                <path
+                                    d="M2.774 11.144c-1.003 1.12-1.024 2.81-.104 4a34 34 0 0 0 6.186 6.186c1.19.92 2.88.899 4-.104a92 92 0 0 0 8.516-8.698a1.95 1.95 0 0 0 .47-1.094c.164-1.796.503-6.97-.902-8.374s-6.578-1.066-8.374-.901a1.95 1.95 0 0 0-1.094.47a92 92 0 0 0-8.698 8.515Z"
+                                />
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    d="M13.788 12.367c.022-.401.134-1.135-.476-1.693m0 0a2.3 2.3 0 0 0-.797-.451c-1.257-.443-2.8 1.039-1.708 2.396c.587.73 1.04.954.996 1.782c-.03.582-.602 1.191-1.356 1.423c-.655.202-1.378-.065-1.835-.576c-.559-.624-.502-1.212-.507-1.468m5.208-3.105L14 9.986m-5.34 5.34l-.653.653"
+                                />
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+            </li>
+            <li>
+                <div
+                    class="tooltip tooltip-left tooltip-primary"
+                    data-tip="Crear Subasta"
+                >
+                    <button
+                        onclick="crear_subasta.showModal()"
+                        class="btn btn-lg btn-circle shadow-lg bg-base-100 border-base-300 hover:btn-primary flex items-center justify-center"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="1em"
+                            height="1em"
+                            viewBox="0 0 24 24"
+                        >
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <g fill="none">
+                                <path
+                                    d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"
+                                />
+                                <path
+                                    fill="currentColor"
+                                    d="M2.686 10.462a2.5 2.5 0 0 0 0 3.536l2.829 2.828a2.5 2.5 0 0 0 4.095-2.681l.791-.791l6.407 7.392a2.793 2.793 0 1 0 3.94-3.94l-7.392-6.407l.791-.79a2.5 2.5 0 0 0 2.681-4.096L14 2.684a2.5 2.5 0 0 0-4.095 2.681L5.368 9.902a2.5 2.5 0 0 0-2.682.56"
+                                />
+                            </g>
+                        </svg>
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- Modales con formularios para agregar discos/subastas. -->
+<section>
+    <!-- Para agregar discos. -->
+    <dialog class="modal" id="vender_disco">
+        <div
+            class="modal-box max-w-2xl p-0 relative bg-base-100 shadow-2xl border border-base-300/50 overflow-auto max-h-[90vh]"
+        >
+            <div class="bg-accent p-6 text-secondary-content">
+                <h3 class="text-2xl font-bold flex items-center gap-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 16 16"
+                    >
+                        <path d="M0 0h16v16H0z" fill="none" />
+                        <path
+                            fill="currentColor"
+                            d="M8 6a2 2 0 1 1 .001 3.999A2 2 0 0 1 8 6m0 3a1 1 0 1 1 0-2a1 1 0 0 1 0 2m0-7a6 6 0 1 0 0 12A6 6 0 0 0 8 2"
+                        />
+                    </svg>
+
+                    Publicar Disco
+                </h3>
+                <p class="text-sm opacity-80 mt-2">
+                    Completa los detalles del álbum para ponerlo a la venta.
+                </p>
+            </div>
+
+            <form action="#" method="post" class="p-8 space-y-5">
+                <!-- Para poner columnas. -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label"
+                            ><span class="label-text font-semibold"
+                                >Título del Álbum</span
+                            ></label
+                        >
+                        <input
+                            type="text"
+                            placeholder="Ej: Dark Side of the Moon"
+                            autofocus
+                            class="input input-bordered focus:input-secondary w-full"
+                            required
+                        />
+                    </div>
+                    <div class="form-control">
+                        <label class="label"
+                            ><span class="label-text font-semibold"
+                                >Artista / Banda</span
+                            ></label
+                        >
+                        <input
+                            type="text"
+                            placeholder="Ej: Pink Floyd"
+                            class="input input-bordered focus:input-secondary w-full"
+                            required
+                        />
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label"
+                            ><span class="label-text font-semibold"
+                                >Género</span
+                            ></label
+                        >
+                        <select
+                            class="select select-bordered focus:select-secondary w-full"
+                        >
+                            <option disabled selected>Selecciona uno</option>
+                            <!-- Aqui hay que iterar entre los generos del los discos. -->
+                            <option>Rock</option>
+                            <option>Jazz</option>
+                            <option>Pop</option>
+                            <option>Electronic</option>
+                            <option>Metal</option>
+                        </select>
+                    </div>
+                    <div class="form-control">
+                        <label class="label"
+                            ><span class="label-text font-semibold"
+                                >Estado</span
+                            ></label
+                        >
+                        <select
+                            class="select select-bordered focus:select-secondary w-full"
+                        >
+                            <option disabled selected>Selecciona uno</option>
+                            <option>Nuevo</option>
+                            <option>Usado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label">
+                            <span class="label-text font-semibold">
+                                Formato
+                            </span>
+                        </label>
+                        <select
+                            class="select select-bordered focus:select-secondary w-full"
+                        >
+                            <option disabled selected>Selecciona uno</option>
+                            <option>CD</option>
+                            <option>Vinilo</option>
+                        </select>
+                    </div>
+
+                    <div class="form-control">
+                        <label class="label"
+                            ><span class="label-text font-semibold">
+                                Precio
+                            </span>
+                        </label>
+                        <label
+                            class="input input-bordered focus:input-secondary w-full"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    fill="currentColor"
+                                    d="M17 12v-1h-4V6h4V4h-4V1h-2v3H7v1H6v7h1v1h4v5H6v2h5v3h2v-3h4v-1h1v-7Zm-6-1H9v-1H8V7h1V6h2Zm4 6v1h-2v-5h2v1h1v3Z"
+                                />
+                            </svg>
+                            <input type="number" required placeholder="0.00" />
+                        </label>
+                    </div>
+
+                    <div class="form-control md:col-span-2">
+                        <label class="label"
+                            ><span class="label-text font-semibold">
+                                Imagen
+                            </span>
+                        </label>
+
+                        <input
+                            id="file-input-venta"
+                            type="file"
+                            accept="image/*"
+                            onchange="previewImage(event, 'venta')"
+                            class="file-input file-input-bordered file-input-accent w-full input-block"
+                            required
+                        />
+
+                        <div
+                            id="preview-container-venta"
+                            class="hidden mt-4 relative w-full flex justify-center bg-base-200 rounded-lg p-4 border-2 border-dashed border-base-300"
+                        >
+                            <img
+                                id="image-preview-venta"
+                                src=""
+                                alt="Vista previa"
+                                class="max-h-64 rounded-md shadow-md object-cover"
+                            />
+                            <button
+                                type="button"
+                                onclick="resetImage('venta')"
+                                class="btn btn-circle btn-xs btn-error absolute bottom-2 right-2"
+                            >
+                                ✕
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-action flex gap-2 pt-4">
+                    <button
+                        type="button"
+                        onclick="
+                            vender_disco.close();
+                            document.activeElement.blur();
+                        "
+                        class="btn btn-ghost"
+                    >
+                        Cerrar
+                    </button>
+                    <button type="submit" class="btn btn-accent px-8">
+                        ¡Publicar!
+                    </button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <!-- Para agregar subastas. -->
+    <dialog class="modal" id="crear_subasta">
+        <div
+            class="modal-box max-w-2xl p-0 relative bg-base-100 shadow-2xl border border-base-300/50 overflow-auto max-h-[90vh]"
+        >
+            <div class="bg-primary p-6 text-primary-content">
+                <h3 class="text-2xl font-bold flex items-center gap-2">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 24 24"
+                    >
+                        <path d="M0 0h24v24H0z" fill="none" />
+                        <g fill="none">
+                            <path
+                                d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"
+                            />
+                            <path
+                                fill="currentColor"
+                                d="M2.686 10.462a2.5 2.5 0 0 0 0 3.536l2.829 2.828a2.5 2.5 0 0 0 4.095-2.681l.791-.791l6.407 7.392a2.793 2.793 0 1 0 3.94-3.94l-7.392-6.407l.791-.79a2.5 2.5 0 0 0 2.681-4.096L14 2.684a2.5 2.5 0 0 0-4.095 2.681L5.368 9.902a2.5 2.5 0 0 0-2.682.56"
+                            />
+                        </g>
+                    </svg>
+
+                    Iniciar Subasta
+                </h3>
+                <p class="text-sm opacity-80 mt-2">
+                    Selecciona que disco quieres subastar.
+                </p>
+            </div>
+
+            <form action="#" method="post" class="p-8 space-y-5">
+                <!-- Para poner columnas. -->
+
+                <div class="grid grid-cols-1 gap-4 md:col-span-2">
+                    <div class="form-control">
+                        <label class="label"
+                            ><span class="label-text font-semibold"
+                                >Nombre</span
+                            ></label
+                        >
+                        <select
+                            class="select select-bordered focus:select-secondary w-full"
+                        >
+                            <option disabled selected>Selecciona uno</option>
+                            <!-- Aqui hay que iterar entre los discos que suba el usuario. -->
+                            <option>El pepe</option>
+                            <option>Jazz</option>
+                            <option>Pop</option>
+                            <option>Electronic</option>
+                            <option>Metal</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-control">
+                        <label class="label"
+                            ><span class="label-text font-semibold">
+                                Precio Inicial
+                            </span>
+                        </label>
+                        <label
+                            class="input input-bordered focus:input-secondary w-full"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    fill="currentColor"
+                                    d="M17 12v-1h-4V6h4V4h-4V1h-2v3H7v1H6v7h1v1h4v5H6v2h5v3h2v-3h4v-1h1v-7Zm-6-1H9v-1H8V7h1V6h2Zm4 6v1h-2v-5h2v1h1v3Z"
+                                />
+                            </svg>
+                            <input type="number" required placeholder="0.00" />
+                        </label>
+                    </div>
+
+                    <div class="form-control">
+                        <label class="label"
+                            ><span class="label-text font-semibold">
+                                Precio Deseado
+                            </span>
+                        </label>
+                        <label
+                            class="input input-bordered focus:input-secondary w-full"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="M0 0h24v24H0z" fill="none" />
+                                <path
+                                    fill="currentColor"
+                                    d="M17 12v-1h-4V6h4V4h-4V1h-2v3H7v1H6v7h1v1h4v5H6v2h5v3h2v-3h4v-1h1v-7Zm-6-1H9v-1H8V7h1V6h2Zm4 6v1h-2v-5h2v1h1v3Z"
+                                />
+                            </svg>
+                            <input type="number" required placeholder="0.00" />
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:col-span-2 gap-4">
+                    <div class="form-control">
+                        <label class="label"
+                            ><span class="label-text font-semibold">
+                                Fecha de Inicio
+                            </span>
+                        </label>
+                        <label
+                            class="input input-bordered focus:input-secondary w-full"
+                        >
+                            <input type="date" />
+                        </label>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:col-span-2 gap-4">
+                    <div class="form-control">
+                        <label class="label"
+                            ><span class="label-text font-semibold">
+                                Fecha de Cierre
+                            </span>
+                        </label>
+                        <label
+                            class="input input-bordered focus:input-secondary w-full"
+                        >
+                            <input type="date" />
+                        </label>
+                    </div>
+                </div>
+
+                <div class="modal-action flex gap-2 pt-4">
+                    <button
+                        type="button"
+                        onclick="crear_subasta.close()"
+                        class="btn btn-ghost"
+                    >
+                        Cerrar
+                    </button>
+                    <button type="submit" class="btn btn-primary px-8">
+                        ¡Iniciar!
+                    </button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+</section>
+
+<!-- Para mostrar la preview de la imagen. -->
+<script>
+    function previewImage(event, tipo) {
+        const input = event.target;
+        const previewContainer = document.getElementById(
+            "preview-container-" + tipo,
+        );
+        const previewImage = document.getElementById("image-preview-" + tipo);
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+                previewContainer.classList.remove("hidden");
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function resetImage(tipo) {
+        const input = document.getElementById("file-input-" + tipo);
+        const previewContainer = document.getElementById(
+            "preview-container-" + tipo,
+        );
+        const previewImage = document.getElementById("image-preview-" + tipo);
+
+        input.value = "";
+        previewImage.src = "";
+        previewContainer.classList.add("hidden");
+    }
+</script>
+
+{% endblock %}

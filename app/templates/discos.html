@@ -122,30 +122,42 @@
         </a>
         {% endfor %}
     </div>-->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
-        {% for elementos in range(12) %}
-        <a href="#" class="group">
-            <div
-                class="card bg-base-200/70 border border-base-content/10 w-full shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-95 cursor-pointer"
+    <div class="flex-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
+            {% for disco in discos %}
+            <a
+                href="{{ url_for('detalle_disco.detalle_disco', id=disco.id_disco) }}"
+                class="group"
             >
-                <figure class="h-48 overflow-hidden">
-                    <img
-                        src="https://i.discogs.com/gAbVlOD03Gd1nHgG0PccLexBqioRnJQt8DlpaiFTERM/rs:fit/g:sm/q:90/h:516/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5NTQ1/NDAtMTY4MjU3MzY3/Mi05MTMxLmpwZWc.jpeg"
-                        alt="Shoes"
-                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                </figure>
-                <div class="card-body p-4">
-                    <h2 class="card-title line-clamp-2 text-base">
-                        Album Phil Collins ...But Seriously Semi nuevo
-                    </h2>
-                    <p class="text-sm line-clamp-3">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    </p>
+                <div
+                    class="card bg-base-200/70 border border-base-content/10 w-full h-full shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 active:scale-95 cursor-pointer"
+                >
+                    <figure class="h-48 overflow-hidden">
+                        <img
+                            src="{{ disco.imagen }}"
+                            alt="{{ disco.titulo }}"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                    </figure>
+                    <div class="card-body p-4">
+                        <h2
+                            class="card-title line-clamp-2 text-base items-start"
+                        >
+                            {{ disco.titulo }}
+                            <div
+                                class="badge {{ 'badge-primary' if disco.formato else 'badge-accent' }}"
+                            >
+                                {{ disco.formato_nombre }}
+                            </div>
+                        </h2>
+                        <p class="text-sm line-clamp-1">
+                            {{ disco.descripcion }}
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </a>
-        {% endfor %}
+            </a>
+            {% endfor %}
+        </div>
     </div>
 </div>
 <div class="join flex justify-center w-full my-10">

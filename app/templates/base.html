@@ -52,10 +52,10 @@
                         class="menu menu-sm dropdown-content mt-2 z-50 p-2 shadow bg-base-100 rounded-box w-52"
                     >
                         <li>
-                            <a href="{{ url_for('main.discos') }}">Discos</a>
+                            <a href="{{ url_for('discos.discos') }}">Discos</a>
                         </li>
                         <li>
-                            <a href="{{ url_for('main.subastas') }}"
+                            <a href="{{ url_for('subastas.subastas') }}"
                                 >Subastas</a
                             >
                         </li>
@@ -76,10 +76,12 @@
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal px-1 gap-2 font-bold">
                     <li>
-                        <a href="{{ url_for('main.discos') }}">Discos</a>
+                        <a href="{{ url_for('discos.discos') }}">Discos</a>
                     </li>
                     <li>
-                        <a href="{{ url_for('main.subastas') }}">Subastas</a>
+                        <a href="{{ url_for('subastas.subastas') }}"
+                            >Subastas</a
+                        >
                     </li>
                 </ul>
             </div>
@@ -145,6 +147,7 @@
         <!-- Footer -->
         <footer
             class="footer sm:footer-horizontal footer-center bg-neutral text-neutral-content py-6 border-t border-neutral-700/40"
+            id="main-footer"
         >
             <aside>
                 <p class="text-sm opacity-80 tracking-wide">
